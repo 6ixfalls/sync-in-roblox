@@ -1,0 +1,37 @@
+{
+  "name": "sync-in-roblox",
+  "version": "1.0.0",
+  "description": "Tool to sync an RBXLX file into a Team Create game, overwriting everything.",
+  "main": "index.js",
+  "scripts": {
+    "compile": "tsc && copyfiles -u 1 src/**/*.lua target/",
+    "test": "npm run compile && cd target/ && node index.js",
+    "build": "npm run compile && pkg target/index.js"
+  },
+  "pkg": {
+    "scripts": "target/**/*.js",
+    "assets": [
+      "node_modules/**/*",
+      "src/**/*.lua"
+    ],
+    "targets": "node12-win-x64",
+    "outputPath": "dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/6ixfalls/sync-in-roblox.git"
+  },
+  "author": "6ixfalls",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/6ixfalls/sync-in-roblox/issues"
+  },
+  "homepage": "https://github.com/6ixfalls/sync-in-roblox#readme",
+  "devDependencies": {
+    "@types/node": "^16.10.3",
+    "copyfiles": "^2.4.1"
+  },
+  "dependencies": {
+    "regedit": "github:6ixfalls/node-regedit"
+  }
+}
