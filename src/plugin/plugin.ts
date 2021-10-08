@@ -17,6 +17,10 @@ export default class Plugin {
 
     public destroy() {
         console.log("Plugin file is being cleaned up.");
-        fs.unlinkSync(this.fileLocation);
+        if (fs.existsSync(this.fileLocation)) {
+            fs.unlinkSync(this.fileLocation);
+        } else {
+            console.log("Plugin file doesn't exist, possibly already removed?");
+        }
     }
 }
