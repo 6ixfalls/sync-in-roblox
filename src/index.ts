@@ -131,7 +131,7 @@ function FindStudioFolders(): Promise<{
     death(() => {
         plugin.destroy();
         if (studioPID) {
-            process.kill(studioPID);
+            process.kill(studioPID, "SIGTERM");
         }
         fileServer.close();
     });
