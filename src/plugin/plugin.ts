@@ -1,6 +1,6 @@
 import * as fs from "fs";
 
-var pluginData = fs.readFileSync("./plugin_template.lua", "utf8");
+var pluginData = fs.readFileSync("./plugin/plugin_template.lua", "utf8");
 
 export default class Plugin {
     fileLocation!: string;

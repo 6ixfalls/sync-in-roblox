@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "compile": "tsc && copyfiles -u 1 src/**/*.lua target/",
-    "test": "npm run compile && cd target/ && node index.js",
+    "test": "npm run compile && cd target/ && node index.js -i 7210556568",
     "build": "npm run compile && pkg target/index.js"
   },
   "pkg": {
