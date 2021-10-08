@@ -105,8 +105,11 @@ function FindStudioFolders(): Promise<{
         "RobloxStudioBeta.exe"
     );
 
-    console.log(studioExecutablePath);
-    console.log(pluginInstallationDirectory);
+    console.log("Roblox Studio was found in " + studioExecutablePath);
+    console.log(
+        "Roblox Studio plugin folder detected to be in " +
+            pluginInstallationDirectory
+    );
 
     var headerUUID = uuidv4();
 
