@@ -21,7 +21,7 @@ end
 
 function SyncFiles()
     local Success, ServerDataResponse = pcall(HttpService.RequestAsync, HttpService, {
-        Url = "localhost:" .. ServerPort .. "/request",
+        Url = "http://localhost:" .. ServerPort .. "/request",
         Method = "GET",
     })
     
@@ -45,7 +45,7 @@ log = LogService.MessageOut:Connect(function(message, messageType)
     if messageType == Enum.MessageType.MessageError then
         log:Disconnect()
         HttpService:RequestAsync({
-            Url = "localhost:" .. ServerPort .. "/error",
+            Url = "http://localhost:" .. ServerPort .. "/error",
             Method = "POST",
             Body = HttpService:JSONEncode({Error = message})
         })
@@ -57,7 +57,7 @@ local succ, message = xpcall(SyncFiles, debug.traceback)
 if not succ then
     log:Disconnect()
     HttpService:RequestAsync({
-        Url = "localhost:" .. ServerPort .. "/error",
+        Url = "http://localhost:" .. ServerPort .. "/error",
         Method = "POST",
         Body = HttpService:JSONEncode({Error = message})
     })
@@ -67,7 +67,7 @@ task.wait(4)
 log:Disconnect()
 
 HttpService:RequestAsync({
-    Url = "localhost:" .. ServerPort .. "/finished",
+    Url = "http://localhost:" .. ServerPort .. "/finished",
     Method = "POST",
     Body = HttpService:JSONEncode({ReturnMessage = message})
 })

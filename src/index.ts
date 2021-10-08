@@ -2,6 +2,7 @@ import regedit = require("regedit");
 import * as path from "path";
 import * as http from "http";
 import * as fs from "fs";
+import death = require("death");
 import { v4 as uuidv4 } from "uuid";
 import { execFile } from "child_process";
 import * as yargs from "yargs";
@@ -112,7 +113,7 @@ function FindStudioFolders(): Promise<{
     var fileChunkData: string;
     fileChunkData = JSON.stringify({
         ReturnHeader: headerUUID,
-        RBXLXData: { Test: "Hello World!" },
+        RBXLXData: { Test: "This message is being sent from studio!" },
     });
 
     const plugin = new Plugin(
@@ -123,6 +124,14 @@ function FindStudioFolders(): Promise<{
     var studioPID: number;
 
     const fileServer = http.createServer();
+
+    death(() => {
+        plugin.destroy();
+        if (studioPID) {
+            process.kill(studioPID);
+        }
+        fileServer.close();
+    });
 
     fileServer.on("request", async (req, res) => {
         req.on("error", (err) => {
@@ -191,12 +200,15 @@ function FindStudioFolders(): Promise<{
 
     fileServer.listen(defaultPort, () => {
         console.log(
-            "Plugin response server is listening on port " + defaultPort
+            "The plugin listener is listening on port " + defaultPort + "!"
         );
     });
 
-    execFile(studioExecutablePath, [
-        "-task EditPlace",
-        `-placeId ${argv.placeid}`,
+    var childProc = execFile(studioExecutablePath, [
+        "-task",
+        "EditPlace",
+        "-placeId",
+        argv.placeid.toString(),
     ]);
+    studioPID = childProc.pid;
 })();

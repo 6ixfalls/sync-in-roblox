@@ -8,14 +8,15 @@ export default class Plugin {
 
     constructor(port: number, UUID: string, pluginDirectory: string) {
         this.headerString = UUID;
-        pluginData.replace("{{PORT}}", `"${port.toString()}"`);
-        pluginData.replace("{{HEADER}}", `"${this.headerString}"`);
+        pluginData = pluginData.replace("{{PORT}}", `"${port.toString()}"`);
+        pluginData = pluginData.replace("{{HEADER}}", `"${this.headerString}"`);
 
-        this.fileLocation = pluginDirectory + "sync_in_roblox_plugin.lua";
+        this.fileLocation = pluginDirectory + "\\sync_in_roblox_plugin.lua";
         fs.writeFileSync(this.fileLocation, pluginData);
     }
 
     public destroy() {
+        console.log("Plugin file is being cleaned up.");
         fs.unlinkSync(this.fileLocation);
     }
 }
