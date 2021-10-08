@@ -1,0 +1,6 @@
+name: CI Testing
+on:
+  [push, pull_request]
+jobs:
+  windows:
+    runs-on: windows-latest
