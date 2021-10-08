@@ -54,26 +54,26 @@ function FindStudioFolders(): Promise<{
     });
 }
 
-const argv = await yargs
-    .option("placeid", {
-        alias: "i",
-        description: "Specify a placeID to publish to.",
-        type: "number",
-        requiresArg: true,
-    })
-    .option("port", {
-        alias: "p",
-        description: "Specify a port for the plugin webserver to run on.",
-        type: "number",
-    })
-    .help()
-    .alias("help", "h").argv;
-
-if (argv.port) {
-    defaultPort = argv.port;
-}
-
 (async function () {
+    const argv = await yargs
+        .option("placeid", {
+            alias: "i",
+            description: "Specify a placeID to publish to.",
+            type: "number",
+            requiresArg: true,
+        })
+        .option("port", {
+            alias: "p",
+            description: "Specify a port for the plugin webserver to run on.",
+            type: "number",
+        })
+        .help()
+        .alias("help", "h").argv;
+
+    if (argv.port) {
+        defaultPort = argv.port;
+    }
+
     const studioFolders = await FindStudioFolders();
     const studioInstallationDirectory = path.normalize(
         studioFolders.studioPath
