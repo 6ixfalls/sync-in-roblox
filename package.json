@@ -29,9 +29,13 @@
   "homepage": "https://github.com/6ixfalls/sync-in-roblox#readme",
   "devDependencies": {
     "@types/node": "^16.10.3",
+    "@types/uuid": "^8.3.1",
+    "@types/yargs": "^17.0.3",
     "copyfiles": "^2.4.1"
   },
   "dependencies": {
-    "regedit": "github:6ixfalls/node-regedit"
+    "regedit": "github:6ixfalls/node-regedit",
+    "uuid": "^8.3.2",
+    "yargs": "^17.2.1"
   }
 }
