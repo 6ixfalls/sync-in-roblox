@@ -29,7 +29,7 @@
   "homepage": "https://github.com/6ixfalls/sync-in-roblox#readme",
   "devDependencies": {
     "@types/death": "^1.1.2",
-    "@types/node": "^16.11.6",
+    "@types/node": "^16.11.8",
     "@types/uuid": "^8.3.1",
     "@types/yargs": "^17.0.4",
     "copyfiles": "^2.4.1"
